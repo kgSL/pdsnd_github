@@ -1,15 +1,18 @@
 ### Date created
-Include the date you created this project and README file.
+February 5, 2020
 
 ### Project Title
-Replace the Project Title
+Udacity Python PFDS Finaly Project
 
 ### Description
-Describe what your project is about and what it does
+This project is to test Python skills learned during the course by exlporing 3 sets of public city bikeshare data.
 
 ### Files used
-Include the files used
+bikeshare.py
+chicago.csv
+new_york_city.csv
+washington.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+Course materials were the primary reference for this project.
+Community answers on Stack Overflow helped me get past several hurdles.
