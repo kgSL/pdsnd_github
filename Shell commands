@@ -1,0 +1,99 @@
+
+~~ Commands ~~
+
+ls will list all the contents within the current Directory you're in
+	ls [filename] (e.g. ls Downloads) will list the content in that specific Directory
+	ls will default to your home directory when you start Shell
+
+cd Downloads/ will allow you to change Directory to Downloads
+	cd .. will go back up one level to parent Directory
+
+pwd will print the current Directory you're in
+
+mkdir will create a new Directory
+	mkdir Documents/Books
+
+mv will move content
+	mv Documents/*.epub Documents/Books
+
+curl allows access to webpages, so see source doce and download files
+	curl -L [URL] will show the source doce for the page
+	To download a file, we add more options: curl -o google.html -L 'http://google.com' will download the google.html file to whatever Directory we're currently in
+
+cat (short for concatenate) allows you to explore a file's contents
+	cat dictionary.txt
+	However will show the entire file so not helpful for large files
+
+less will help you explore a file more easily
+	less dictionary.txt
+		within less, there are a few shortcuts:
+		spacebar will scroll down
+		b will scroll back up
+		/[text] allows you to search
+		q will quit this viewer
+
+rm [filename] will delete the file permanently from the computer (no trash bin)
+	rm -i will prompt you if you want to actually delete it
+rmdir [directory_name] will delete a directory
+
+grep [content] [filename] allows you to search for content within a file
+	adding on | less at the end will allow you to easily browse the results
+	grep goo dictionary.txt | less
+	You can also grep a webpage, not just downloaded files
+		curl -L 'https://tinyurl.com/zeyq9vc' | grep fish | less
+
+wc allows you to count words or lines
+	wc -l will count lines
+	curl -L 'https://tinyurl.com/zeyq9vc' | grep fish | wc -l
+		can do something similar with -c: curl -L 'https://tinyurl.com/zeyq9vc' | grep -c fish
+
+Environment variables
+	Variables that Shell shares with other programs
+	Some environment variables: $PATH
+
+Shell variables
+	Can define a new one by entering [variable_name]=[variable_value] (e.g. numbers='one two three')
+	Can recall a variable by entering echo $[variable_name]
+	Some Shell variables: $COLUMNS, $LINES
+
+.bash_profile (startup file)
+	You can add programming to this file that you want to run upon Shell opening
+	open -e .bash_profile will open the file. Make edits, save and close the file.
+	. .bash_profile will show your changes so you can verify they work
+	Can encode variables here if you want them to exist in every Shell instance
+		Helpful startup format generator: http://bashrcgenerator.com/
+
+alias can create shorter codes for longer shell commands
+	alias ll='ls -la'
+	to see all the alias commands you've created, run alias alone and it will print them
+	Add these to the .bash_profile so they last longer than the one terminal
+	Popular examples:
+		alias ..='cd ..'
+		alias sl='ls'
+		alias cl='curl -L'
+		alias ll='ls -la'
+		alias ...='cd ...'
+		alias now='date +"%T"'
+
+
+~~ Shortcuts ~~
+
+~ means home directory, so you can ls ~ or cd ~ to see or switch to the home directory
+-l after ls will provide additional details of the contents in that Directory
+*.[file_type] (e.g. *.pdf or *.xlsx) after an LS command will list all the contents of that file type
+* is also a wildcard, so can be used to find, for instance, all file names starting with france (france*)
+ONLY use single quotes in Shell
+Shell is case sensitive
+
+-c : This prints only a count of the lines that match a pattern
+-h : Display the matched lines, but do not display the filenames.
+-i : Ignores, case for matching
+-l : Displays list of a filenames only.
+-n : Display the matched lines and their line numbers.
+-v : This prints out all the lines that do not matches the pattern
+-e exp : Specifies expression with this option. Can use multiple times.
+-f file : Takes patterns from file, one per line.
+-E : Treats pattern as an extended regular expression (ERE)
+-w : Match whole word
+-o : Print only the matched parts of a matching line,
+ with each such part on a separate output line.

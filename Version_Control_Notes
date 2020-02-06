@@ -1,0 +1,234 @@
+Version Control System (VCS) or Source Code Manager (SCM): A VCS allows you to:
+revert files back to a previous state, revert the entire project back to a previous state,
+review changes made over time, see who last modified something that might be causing
+a problem, who introduced an issue and when, and more.
+
+Commit (snapshot): Git thinks of its data like a set of snapshots of a mini file system.
+Every time you commit, or save the state of your project in Git, it basically takes a
+picture of what all your files look like at that moment and stores a reference to that
+snapshot.
+
+Repository (repo): A directory that contains your project work, as well as a few files
+(hidden by default in Mac OS X) which are used to communicate with Git. Repositories
+can exist either locally on your computer or as a remote copy on another computer.
+
+Working Directory: The files that you see in your computer's file system. When you
+open your project files up on a code editor, you're working with files in the Working
+Directory.
+This is in contrast to the files that have been saved (in commits!) in the repository.
+When working with Git, the Working Directory is also different from the command line's
+concept of the current working directory which is the directory that your shell is
+"looking at" right now.
+
+Checkout: When content in the repository has been copied to the Working Directory. It
+is possible to checkout many things from a repository; a file, a commit, a branch, etc.
+
+Staging Area or Staging Index or Index: A file in the Git directory that stores
+information about what will go into your next commit. You can think of the staging area
+as a prep table where Git will take the next commit. Files on the Staging Index are
+poised to be added to the repository.
+
+SHA: A SHA is basically an ID number for each commit. It is a 40-character string
+composed of characters (0–9 and a–f) and calculated based on the contents of a file or
+directory structure in Git. "SHA" is shorthand for "SHA hash". A SHA might look like this:
+e2adf8ae3e2e4ed40add75cc44cf9d0a869afeb6
+
+Branch: A branch is when a new line of development is created that diverges from the
+main line of development. This alternative line of development can continue without
+altering the main line.
+Going back to the example of save point in a game, you can think of a branch as where
+you make a save point in your game and then decide to try out a risky move in the
+game. If the risky move doesn't pan out, then you can just go back to the save point. The
+key thing that makes branches incredibly powerful is that you can make save points on
+one branch, and then switch to a different branch and make save points there, too.
+
+
+Initial setup:
+# sets up Git with your name
+git config --global user.name "<Your-Full-Name>"
+
+# sets up Git with your email
+git config --global user.email "<your-email-address>"
+
+# makes sure that Git output is colored
+git config --global color.ui auto
+
+# displays the original state in a conflict
+git config --global merge.conflictstyle diff3
+
+git config --list
+
+git config --global core.editor "atom --wait"
+OR
+git config --global core.editor "'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl' -n -w"
+
+
+typing "git init" in shell while in a directory will initialize git there
+	you can also make a directory like this: mkdir -p udacity-git-course/new-git-project && cd $_
+
+git clone will make a copy of an existing project. this can be a project on your computer, on the web, etc.
+	git clone <path-to-repository-to-clone>
+	clone into a different directory: git clone https://github.com/udacity/course-git-blog-project new_directory
+
+enter git status a lot while learning to understand how things are working
+
+git log will show change log
+	to scroll down, press
+		j or ↓ to move down one line at a time
+		d to move by half the page screen
+		f to move by a whole page screen
+	to scroll up, press
+		k or ↑ to move _up_ one line at a time
+		u to move by half the page screen
+		b to move by a whole page screen
+	press q to quit out of the log (returns to the regular command prompt)
+
+git log --oneline will reduce output to only the commit messages, an abbreviated SHA of just 7 chars, and strip out dates and owners
+
+git log --patch or git log -p shows us the actual changes made to a file
+
+git log -p --stats will combine the output of the two
+	adding -w to any of these will ignore whitespce only changes (i.e. indents) so it's easier to find more significant code edits
+
+git log -p fdf5493 (e.g. first 7 chars of SHA) will start the log at that commit, so less scrolling.
+
+'git log shortlist' can be used when there are many collaborators, to see the commit message and number of commits
+	each has made
+	'git shortlog -s -n' will show only the number of commits, and sort them numerically
+	'git log --author="exact_name"' or 'git log --author=name' will filter by author
+
+'git log --grep="border radius issue in Safari"' grep allows you to search for text in the commit messages, which
+	is helpful when reviewing others' code
+
+git show will show just one commit at a time
+	git show fdf5493  or  git show -p --stat fdf5493 are common uses
+
+git add will stage files from the working directory
+	git add index.html
+	git add . will stage all files in the working directory
+
+git commit to commit changes
+	A window will open asking for your commit message. You must enter something, then save and close the tab or window.
+	git commit -m "message" will bypass that window and do it in the shell
+
+git diff shows the files that have been modified since last commit, and what was changed
+
+.gitignore
+	-you can add this file to the directory where your git init or clone lives
+	-add a filename to this file to have commits ignore adding it to the repository and just keep it in the directory
+	-to add many files at once, we can use globbing:
+		-Globbing lets you use special characters to match patterns/characters.
+		-In the .gitignore file, you can use the following:
+
+			blank lines can be used for spacing
+			# - marks line as a comment
+			* - matches 0 or more characters
+			? - matches 1 character
+			[abc] - matches a, b, _or_ c
+			** - matches nested directories - a/**/z matches
+			a/z
+			a/b/z
+			a/b/c/z
+
+			So if all of the 50 images are JPEG images in the "samples" folder,
+			we could add the following line to .gitignore to have Git ignore all 50 images.
+
+git tag -a "some tag text" allows you to tag the latest commit with an annotation that makes that commit stand out vs. others
+	this could be helpful for instance if we have a commit that marks our code as beta 1.0 for example
+	- verify tag exists by typing git tag into shell
+	- tag can be deleted with the -d delete flag: git tag -d "some tag text"
+	- adding the first 7 of the SHA to the command will allow you to tag a past commit
+		- 'git tag -a "some tag text a87984'
+
+BRANCHING
+	head refers to the current active branch, so any commits will only happen to the head
+	- 'git checkout' command can be used to switch between the master branch and other branches
+		- 'git checkout master', 'git checkout branch1'
+		- This will remove all of the files that are referenced by commits in the master branch.
+		- It will replace them with the files that are referenced by the commits in the sidebar branch.
+	- we can have as many branches as we want and choose where each starts from
+	typing 'git branch' alone will display all branches in the repository
+	git log --oneline --graph --all will show all branches and show where they connect
+
+	deleting branches can be done by 'git branch -d "branch_name"'
+		-first you must not be on that branch, move the head
+		-also, if there are any commits that exist on that branch that have not been merged, git will not allow you to delete
+			-you would need to force deletion with 'git branch -D "branch_name"'
+
+	create a new branch and switch to it in the same line:
+		- 'git checkout -b "branch_name" location_of_branch'
+			- e.g. git checkout -b head_fix master
+
+MERGES
+		How to undo merges:
+				git reset --hard HEAD^
+		'git merge "name-of-branch-to-merge-in"'
+				When a merge happens, Git will:
+					look at the branches that it's going to merge
+					look back along the branch's history to find a single commit that both branches have in their commit history
+					combine the lines of code that were changed on the separate branches together
+					makes a commit to record the merge
+		Merge conflicts:
+				- in case of a conflict, use git status, and then open the file that is called out there as having the conflict
+				- delete the merge conflict indicator lines, fix the code, save, stage, use git diff to verify changes, and commit
+
+
+git commit --amend
+		makes changes to the last commit
+			- you can either run this and change the commit message
+			- or if you missed a task that should have been part of the last commit, edit the file, stage and
+					then run this code to include it in the last commit
+
+'git revert SHA' will basically undo the commit by creating a new commit that reverses it
+
+
+Ancestry references
+	^ indicates the parent commit (one commit before the current one)
+	~ indicates the first parent commit
+	The first parent is the branch you were on when you ran git merge while the second parent is the branch that was merged in.
+		^ or ~ are parent commit
+		^^ or ~2 are grandparent commit
+		^^^ or ~3 are great-grandparent commit
+
+RESET
+	- be careful as this will delete commits from the repository
+	- git keeps track of everything for 30 days and can be found using 'git reflog'
+
+ 'git reset <reference-to-commit>'
+		 It can be used to:
+
+		 move the HEAD and current branch pointer to the referenced commit
+		 erase commits
+		 move committed changes to the staging index
+		 unstage committed changes
+		 --mixed moves the committed changes into the working directory
+		 --soft adds the committed changes to staging
+		 --hard deletes the changes that were committed
+	Best practice is to create a backup branch before resetting to make sure changes are still there and can be retrieved
+		git branch backup
+
+
+REMOTE REPO on github
+	- use button on Github to create a new Repository
+	- enter git remote add origin "URL_string" to add the remote repository
+	 - the git push -u origin master to finish setup
+	- git remote -v to verify the repo is setup
+
+	- git push origin master will send changes to the remote repo from local repo and merge it
+	- git pull origin master will retrieve changes from the remote repo and merge into the local branch
+
+	- git fetch will retrieve changes from the remote repo BUT will not automatically merge them
+		- you would run git merge after a fetch if you want to merge
+		- You can think of git fetch as half of a git pull. The other half of git pull is the merging aspect
+		- git fetch origin master
+		- One main point when you want to use git fetch rather than git pull is if your remote branch and your local branch
+			both have changes that neither of the other ones has. In this case, you want to fetch the remote changes to get
+			them in your local branch and then perform a merge manually.
+			Then you can push that new merge commit back to the remote.
+
+	CONTRIBUTING to other's projects in GitHub
+		- if you're not the owner, and you want to help improve a project that exists on GitHub, first search
+			for a CONTRIBUTING.md file and read it
+		- check out the project's existing issues
+		- talk with the project maintainer
+		- get to work and submit changes through a Pull Request in GitHub
