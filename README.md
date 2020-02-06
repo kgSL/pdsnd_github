@@ -6,6 +6,7 @@ Udacity Python PFDS Finaly Project
 
 ### Description
 This project is to test Python skills learned during the course by exlporing 3 sets of public city bikeshare data.
+The task is to ask the user which city and date range to explore, then share a number of interesting statistics.
 
 ### Files used
 bikeshare.py
