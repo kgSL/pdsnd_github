@@ -124,6 +124,7 @@ def station_stats(df):
     print('\nThe most common end station is: ', df['End Station'].mode()[0])
 
     temp = pd.DataFrame()
+    #First concatenate the trips
     temp['Common Trip'] = df['Start Station'] + ' to ' + df['End Station']
     print('\nThe most common end station is: ', temp['Common Trip'].mode()[0])
 
