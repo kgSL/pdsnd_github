@@ -2,7 +2,7 @@
 February 5, 2020
 
 ### Project Title
-Udacity Python PFDS Finaly Project
+Udacity Python PFDS Final Project
 
 ### Description
 This project is to test Python skills learned during the course by exlporing 3 sets of public city bikeshare data.
