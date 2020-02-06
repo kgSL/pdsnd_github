@@ -11,4 +11,5 @@ The project is my first significant Python project.
 Include the files used
 
 ### Credits
-The Joe Rogan podcast helped me stay focused.
+It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+
