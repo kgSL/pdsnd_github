@@ -100,7 +100,7 @@ def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
-    start_time = time.time()
+    start_time = t.time()
 
     print('\nThe most common month is: ', df.month.mode()[0])
 
@@ -109,7 +109,7 @@ def time_stats(df):
     df['Start Hour'] = pd.to_datetime(df['Start Time'], format='%I%p')
     print('\nThe most common start hour is: ', df['Start Hour'].mode()[0])
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (t.time() - start_time))
     print('-'*40)
 
 
@@ -117,7 +117,7 @@ def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
-    start_time = time.time()
+    start_time = t.time()
 
     print('\nThe most common start station is: ', df['Start Station'].mode()[0])
 
@@ -128,7 +128,7 @@ def station_stats(df):
     temp['Common Trip'] = df['Start Station'] + ' to ' + df['End Station']
     print('\nThe most common end station is: ', temp['Common Trip'].mode()[0])
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (t.time() - start_time))
     print('-'*40)
 
 
@@ -136,13 +136,13 @@ def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
     print('\nCalculating Trip Duration...\n')
-    start_time = time.time()
+    start_time = t.time()
 
     print('\nTotal travel time (in seconds) was: ', int(np.sum(df['Trip Duration'])))
 
     print('\nAverage travel time (in seconds) was: ', int(np.mean(df['Trip Duration'])))
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (t.time() - start_time))
     print('-'*40)
 
 
@@ -150,7 +150,7 @@ def user_stats(df):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
-    start_time = time.time()
+    start_time = t.time()
 
     print(df['User Type'].value_counts())
 
@@ -166,7 +166,7 @@ def user_stats(df):
     except KeyError:
         print('\nThis data does not include Birth Year segmentation\n')
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (t.time() - start_time))
     print('-'*40)
 
 
