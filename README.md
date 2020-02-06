@@ -5,7 +5,7 @@ Include the date you created this project and README file.
 Replace the Project Title
 
 ### Description
-Describe what your project is about and what it does
+The project is my first significant Python project.
 
 ### Files used
 Include the files used
