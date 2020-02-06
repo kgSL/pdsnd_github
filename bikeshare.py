@@ -1,4 +1,4 @@
-import time
+import time as t
 import pandas as pd
 import numpy as np
 
@@ -24,14 +24,14 @@ def get_filters():
         else:
             print('\nInvalid entry. Please enter city again.')
     while True:
-        time_var = ''
-        time_var = input('\nWould you like to filter the data by month, day, both, or none?: ').lower()
-        if time_var in ['month', 'day', 'both', 'none']:
+        time = ''
+        time = input('\nWould you like to filter the data by month, day, both, or none?: ').lower()
+        if time in ['month', 'day', 'both', 'none']:
             break
         else:
             print('\nInvalid entry. Please enter time filter again.')
     while True:
-        if time_var == 'month':
+        if time == 'month':
             month = input('\nWhich month? Please type January, February, March, April, May, or June: ').lower()
             print('\nPerfect! We\'ll look at bikeshare data for {} in the month of {}.'.format(city.title(), month.title()))
             day = 'all'
@@ -39,7 +39,7 @@ def get_filters():
                 break
             else:
                 print('\nInvalid entry. Please enter month again.')
-        elif time_var == 'day':
+        elif time == 'day':
             day = input('\nWhich day? Please type Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday: ').lower()
             print('\nPerfect! We\'ll look at bikeshare data for {} on {} of every week.'.format(city.title(), day.title()))
             month = 'all'
@@ -47,7 +47,7 @@ def get_filters():
                 break
             else:
                 print('\nInvalid entry. Please enter day again.')
-        elif time_var == 'both':
+        elif time == 'both':
             month = input('\nWhich month? Please type January, February, March, April, May, or June: ').lower()
             day = input('\nWhich day? Please type Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday: ').lower()
             print('\nPerfect! We\'ll look at bikeshare data for {} on {} of every week in {}.'.format(city.title(), day.title(), month.title())),
@@ -55,7 +55,7 @@ def get_filters():
                 break
             else:
                 print('\nInvalid entry. Please enter month and day again.')
-        elif time_var == 'none':
+        elif time == 'none':
             day = 'all'
             month = 'all'
             print('\nPerfect! We\'ll look at all six months of bikeshare data for {}.'.format(city.title()))
