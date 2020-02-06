@@ -179,6 +179,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
         a = 0
+        #Loop asks the user if they'd like to see some raw data
         display_raw = input('\nWould you like to see five lines of raw data? Enter yes or no.\n').lower()
         while display_raw == 'yes':
             print(df.iloc[a:a+5])
